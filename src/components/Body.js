@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState( resList);
+
+useEffect(()=>{
+  console.log("rendered")
+}
+)
 
   return (
     <div className="body">
@@ -23,6 +28,6 @@ const Body = () => {
       </div>
     </div>
   );
-};
+};  
 
 export default Body;
