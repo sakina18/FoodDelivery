@@ -8,15 +8,17 @@ const Body = () => {
 useEffect(()=>{
   fetchData();
 },[]);
-const fetchData= async () => {
-  const data = await fetch(
-    "https://www.swiggy.com/dapi/restaurants/list/v5?lat=34.0836708&lng=74.7972825&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
-
+const fetchData = async () => {
+  const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=34.0836708&lng=74.7972825&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+);
+    
 const json= await data.json();
 
 console.log(json);
 };
-
+if(listOfRestaurants == null){
+  return <div> loading...</div>;
+}
   return (
     <div className="body">
       <div className="filter">
