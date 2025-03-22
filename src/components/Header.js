@@ -16,13 +16,11 @@ const[Login , setLogin] = useState("Login");
                     <li>Cart</li>
                     <button className="login"
                     onClick={()=> { 
-                        if(Login=== "Login") {
-                        setLogin("Logout");
+                        Login === "Login"
+                       ? setLogin("Logout")
+                     : setLogin("Login");
                         }
-                        else{
-                            setLogin("Login");Login
-                        }
-                    }}>
+                    }>
                     {Login} 
                     </button>
                 </ul>
