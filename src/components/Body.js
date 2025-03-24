@@ -1,10 +1,12 @@
-import { useState , useEffect} from "react";
+import { useState , useEffect, use} from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const[Search,setSearch] =useState("");
 
+  // whenever state variables update, react re-renders the component
 useEffect(()=>{
 fetchData();
 },[]);
@@ -27,6 +29,16 @@ setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithSty
   return listOfRestaurants.length == 0 ? <Shimmer/> : (
     <div className="body">
       <div className="filter">
+      <div className="search">
+      <input type="text" className="search-box"  value={Search} onChange={ (e)=>
+       { setSearch(e.target.value);
+      } }/>
+      <button onClick={()=>
+        {  
+
+        }
+      }>search</button>
+      </div>
         <button className="filter-btn" onClick={()=> {
           const filteredList=listOfRestaurants.filter(
             (res)=>res.info.avgRating>4
@@ -41,6 +53,7 @@ setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithSty
         ))}
       </div>
     </div>
+    
   );
 };  
 
