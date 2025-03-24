@@ -35,7 +35,11 @@ setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithSty
       } }/>
       <button onClick={()=>
         {  
+          console.log(Search);
 
+          const filteredRestaurant =listOfRestaurants.filter((res)=>
+            res.info.name.toLowerCase().includes(Search.toLowerCase()));
+          setListOfRestaurants(filteredRestaurant);
         }
       }>search</button>
       </div>
