@@ -1,10 +1,12 @@
-import { useState , useEffect, use} from "react";
+import { useState , useEffect} from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
-  const[Search,setSearch] =useState("");
+  const[filteredRestaurant,setFilteredRestaurant] =useState([]);
+
+  const[Search,setSearch] = useState("");
 
   // whenever state variables update, react re-renders the component
 useEffect(()=>{
@@ -21,6 +23,8 @@ console.log(json);
 
 //optional chaining
 setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+
+setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 };
 //conditional rendering
 //if (listOfRestaurants.length == 0){
@@ -52,7 +56,7 @@ setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithSty
         >Top Rated Restaurants</button>
       </div>
       <div className="res-container">
-        {listOfRestaurants.map((restaurant) => (
+        {filteredRestaurant.map((restaurant) => (
           <RestaurantCard key={restaurant.info.id} resData={restaurant} />
         ))}
       </div>
