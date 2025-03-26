@@ -1,7 +1,7 @@
 import { useState , useEffect} from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
-
+// never make state varaibles outside the componenet
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const[filteredRestaurant,setFilteredRestaurant] =useState([]);
@@ -11,7 +11,7 @@ const Body = () => {
   // whenever state variables update, react re-renders the component
 useEffect(()=>{
 fetchData();
-},[]);
+}) ;
 const fetchData = async () => {
   const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=34.0836708&lng=74.7972825&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
 );
@@ -51,7 +51,7 @@ setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithSt
           const filteredList=listOfRestaurants.filter(
             (res)=>res.info.avgRating>4
           )
-          setListOfRestaurants(filteredList);
+          setListOfRestaurants();
         }}
         >Top Rated Restaurants</button>
       </div>
